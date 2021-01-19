@@ -1,5 +1,5 @@
 # Paintjs
-Paint Board made with JS
+Paint Board made with VanillaJS 
 
 1. choose the color
 2. choose the line size
