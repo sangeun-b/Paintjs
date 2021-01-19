@@ -4,6 +4,7 @@ const colors = document.getElementsByClassName("jsColor");
 const range = document.getElementById("jsRange");
 const mode = document.getElementById("jsMode");
 const saveBtn = document.getElementById("jsSave");
+const clearBtn = document.getElementById("jsClear");
 
 const INITIALL_COLOR = "##2c2c2c";
 const CANVAS_SIZE = 700;
@@ -18,6 +19,7 @@ ctx.lineWidth = 2.5;
 
 let painting = false;
 let filling = false;
+let erasing = false;
 
 function stopPainting() {
   painting = false;
@@ -56,9 +58,11 @@ function handleRangeChange(event) {
 function handleModeClick() {
   if (filling === true) {
     filling = false;
+    erasing = false;
     mode.innerText = "Fill";
   } else {
     filling = true;
+    erasing = false;
     mode.innerText = "paint";
   }
 }
@@ -80,6 +84,9 @@ function handleSaveClick() {
   link.download = "my paint";
   console.log(link);
   link.click();
+}
+function handleClearClick() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 if (canvas) {
@@ -106,4 +113,7 @@ if (mode) {
 
 if (saveBtn) {
   saveBtn.addEventListener("click", handleSaveClick);
+}
+if (clearBtn) {
+  clearBtn.addEventListener("click", handleClearClick);
 }
